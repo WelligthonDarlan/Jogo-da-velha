@@ -1,22 +1,204 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 body {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #232323;
+}
+#header{
+  gap: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+h1{
+  font-family: 'Major Mono Display', monospace;
+  padding: 20px;
+  font: 100px;
+}
+#player label{
+  padding: 10px;
+
+}
+.playerInput{
+  background-color: #383838;
+  font-size: 20px;
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  width: 300px;
+}
+.playerLabel{
+  font-weight: 800;
 }
 
+#start{
+  font-family: 'Major Mono Display', monospace;
+  width: 500px;
+  background-color: #4db1d8;
+  border: 0;
+  padding: 10px 30px;
+  font-size: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#start:hover{
+  background-color: #3a8cac;
+}
+#container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border: 3px solid blue; */
+  width: 100%;
+}
+#section1{
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+#section1 h2{
+  font-family: 'Handjet', sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  color: #fc963e;
+  text-shadow: 0px 0px 4px  #fc963e;
+}
+#btnContinuar{
+  font-family: 'Handjet', sans-serif;
+  padding: 10px;
+  font-size: 70px;
+  font-weight: 500;
+  color: #fc963e;
+  text-shadow: 0px 0px 4px  #fc963e;
+  background-color: transparent;
+  border: 0px;
+  cursor: pointer;
+  animation: btnContinuar 2s linear 2s infinite;
+  transition: 0.5s;
+  opacity: 0;
+}
+#btnContinuar:hover{
+  color: #ffffff;
+  animation: 0;
+  text-shadow: 0px 0px 10px  #ffffff;
+}
+@keyframes btnContinuar{
+0%, 100%{
+  text-shadow: 0px 0px 4px  #fc963e;
+}
+50%{
+  text-shadow: 0px 0px 20px  #fda150;
+}
+
+}
+#containerScore{
+  /* border: 3px solid red; */
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  font-size: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#player1Score{ padding: 10px 30px;
+  font-family: 'Handjet', sans-serif;
+  font-size: 130px;
+  font-weight: 500;
+  color: #fc963e;
+  text-shadow: 0px 0px 4px  #fc963e;
+  width: 35%;
+  /* border: 3px solid rgb(4, 0, 255); */
+  text-align: center;
+
+}
+.containerPlayer{
+  padding: 5px;
+  display: flex;
+  width: 30%;
+  /* border: 3px solid rgb(0, 255, 42); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#player2Score{ padding: 10px 30px;
+  font-family: 'Handjet', sans-serif;
+  font-size: 130px;
+  font-weight: 500;
+  color: #fc963e;
+  text-shadow: 0px 0px 4px  #fc963e;
+  width: 35%;
+  /* border: 3px solid rgb(4, 0, 255); */
+  text-align: center;
+}
+#vs{
+  padding: 10px 30px;
+  font-family: 'Handjet', sans-serif;
+  font-size: 130px;
+  font-weight: 500;
+  color: #fc963e;
+  text-shadow: 0px 0px 4px  #fc963e;
+  
+  
+}
+.score{
+  padding: 10px 30px;
+  font-family: 'Handjet', sans-serif;
+  font-size: 200px;
+  font-weight: 500;
+  color: #fc963e;
+  text-shadow: 0px 0px 4px  #fc963e;
+  
+
+}
 #gameBoard {
+  /* border: 3px solid yellow; */
+  width: 100%;
   background-color: #232323;
   display: grid;
-  grid-template-columns: 6rem 6rem 6rem;
-  grid-template-rows: 6rem 6rem 6rem;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  max-width: 19rem;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  gap: 4.5rem;
+  place-content: center;
+  align-items: center;
+  justify-content: center;
+  /* margin-bottom: 1.5rem; */
+  /* max-width: 20rem; */
+  width: 100%;
+  height: 600px;
+  
 }
 
 #gameBoard span {
-  background-color: #ddd;
+  font-family: 'Indie Flower', cursive;
+
+  background-color: #232323;
   display: grid;
   place-content: center;
-  font-size: 5rem;
+  font-size: 100px;
+  border: 2px dashed #ffffff71;
+  border-radius: 15PX;
+  width: 150px;
+  height: 150px;
+  color: white;
 }
 
 #gameBoard span.win {

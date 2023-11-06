@@ -2,6 +2,13 @@
 const boardRegions = document.querySelectorAll("#gameBoard span");
 let vBoard = [];
 let turnPlayer = "";
+const player1Score = document.getElementById('player1Score')
+const player2Score = document.getElementById('player2Score')
+const inputPlayer1 = document.getElementById('player1')
+const inputPlayer2 = document.getElementById('player2')
+
+const scoreXElement = document.getElementById("scoreX");
+const scoreOElement = document.getElementById("scoreO");
 
 function updateTitle() {
   const playerInput = document.getElementById(turnPlayer);
@@ -9,6 +16,8 @@ function updateTitle() {
 }
 
 function initializeGame() {
+  inputPlayer1.value = "Welligthon"
+  inputPlayer2.value = "João"
   // Inicializa as variáveis globais
   vBoard = [
     ["", "", ""],
@@ -25,7 +34,10 @@ function initializeGame() {
     element.innerText = "";
     element.classList.add("cursor-pointer");
     element.addEventListener("click", handleBoardClick);
-  });
+  })
+
+  player1Score.innerText = inputPlayer1.value.toUpperCase();
+  player2Score.innerText = inputPlayer2.value.toUpperCase()
 }
 // Verifica se existem três regiões iguais em sequência e devolve as regiões
 function getWinRegions() {
@@ -49,9 +61,28 @@ function disableRegion(element) {
 function handleWin(regions) {
   regions.forEach(function (region) {
     document.querySelector('[data-region="' + region + '"]').classList.add("win");
+    
   });
   const playerName = document.getElementById(turnPlayer).value;
-  document.querySelector("h2").innerHTML = playerName + " venceu!";
+  document.querySelector("h2").innerHTML = playerName.toUpperCase() + " VENCEU!";
+  
+  const btnContinuar = document.getElementById('btnContinuar')
+  btnContinuar.style.opacity = "1"
+
+
+//Aumenta o valor no placar
+if(playerName === inputPlayer1.value){
+  let scoreXValue = parseInt(scoreXElement.textContent);
+  scoreXValue++;
+  scoreXElement.textContent = scoreXValue.toString().padStart(2, '0');
+  
+  alert(`${playerName.toUpperCase()}  VENCEU!`)
+}else if(playerName === inputPlayer2.value){
+  let scoreOValue = parseInt(scoreOElement.textContent);
+  scoreOValue++;
+  scoreOElement.textContent = scoreOValue.toString().padStart(2, '0');
+  alert(`${playerName.toUpperCase()}  VENCEU!`)
+}
 }
 
 function handleBoardClick(ev) {
@@ -82,8 +113,15 @@ function handleBoardClick(ev) {
     turnPlayer = turnPlayer === "player1" ? "player2" : "player1";
     updateTitle();
   } else {
-    document.querySelector("h2").innerHTML = "Empate!";
+    document.querySelector("h2").innerHTML = "EMPATE!";
+    btnContinuar.style.opacity = "1"
+    alert(`EMPATE!`)
   }
+
+  btnContinuar("click", () => {
+    btnContinuar.style.opacity = "0"
+  })
 }
+
 // Adiciona o evento no botão que inicia o jogo
 document.getElementById("start").addEventListener("click", initializeGame);
