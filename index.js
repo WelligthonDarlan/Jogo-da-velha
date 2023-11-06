@@ -2,6 +2,10 @@
 const boardRegions = document.querySelectorAll("#gameBoard span");
 let vBoard = [];
 let turnPlayer = "";
+
+const container = document.getElementById('container')
+const header = document.getElementById('header')
+
 const player1Score = document.getElementById('player1Score')
 const player2Score = document.getElementById('player2Score')
 const inputPlayer1 = document.getElementById('player1')
@@ -18,6 +22,10 @@ function updateTitle() {
 function initializeGame() {
   inputPlayer1.value = "Welligthon"
   inputPlayer2.value = "João"
+  
+  container.style.opacity = "1"
+  header.style.display = "none"
+  
   // Inicializa as variáveis globais
   vBoard = [
     ["", "", ""],
@@ -61,6 +69,7 @@ function disableRegion(element) {
 function handleWin(regions) {
   regions.forEach(function (region) {
     document.querySelector('[data-region="' + region + '"]').classList.add("win");
+    document.getElementById("vezDe").classList.add("placarWin");
     
   });
   const playerName = document.getElementById(turnPlayer).value;
@@ -76,12 +85,12 @@ if(playerName === inputPlayer1.value){
   scoreXValue++;
   scoreXElement.textContent = scoreXValue.toString().padStart(2, '0');
   
-  alert(`${playerName.toUpperCase()}  VENCEU!`)
+  // alert(`${playerName.toUpperCase()}  VENCEU!`)
 }else if(playerName === inputPlayer2.value){
   let scoreOValue = parseInt(scoreOElement.textContent);
   scoreOValue++;
   scoreOElement.textContent = scoreOValue.toString().padStart(2, '0');
-  alert(`${playerName.toUpperCase()}  VENCEU!`)
+  // alert(`${playerName.toUpperCase()}  VENCEU!`)
 }
 }
 
@@ -118,8 +127,26 @@ function handleBoardClick(ev) {
     alert(`EMPATE!`)
   }
 
-  btnContinuar("click", () => {
+  function resetBoard() {
+    vBoard = [
+      ["", "", ""],
+      ["", "", ""],
+      ["", "", ""],
+    ];
+    boardRegions.forEach(function (element) {
+      element.classList.remove("win");
+      element.innerText = "";
+      element.classList.add("cursor-pointer");
+      element.addEventListener("click", handleBoardClick);
+    });
+    document.querySelector("h2").innerHTML = 'Vez de: <span id="turnPlayer"></span>';
+    updateTitle();
+    document.getElementById("vezDe").classList.remove("placarWin");
+  }
+
+  btnContinuar.addEventListener("click", () => {
     btnContinuar.style.opacity = "0"
+    resetBoard()
   })
 }
 
