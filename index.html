@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./img/icons8-tic-tac-toe-47.png" type="image/x-icon">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Handjet:wght@200&family=Indie+Flower&family=Major+Mono+Display&family=Roboto:wght@300&display=swap" rel="stylesheet">
 
-    <title>Jogo da Velha</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="index.js" defer></script>
-  </head>
-  <body>
-    <div id="header">
-      <h1>Jogo da Velha</h1>
-      <div id="player">
-        <label for="player1" class="playerLabel">X</label>
-        <input type="text" id="player1" placeholder="Nome do Jogador 1" class="playerInput"/>
-        <label for="player2" class="playerLabel">O</label>
-        <input type="text" id="player2" placeholder="Nome do Jogador 2" class="playerInput"/>
-      </div>
-      <button id="start">INICIAR</button>
-      
-      
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="./img/icons8-tic-tac-toe-47.png" type="image/x-icon">
 
-      
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Handjet:wght@200&family=Indie+Flower&family=Major+Mono+Display&family=Roboto:wght@300&display=swap"
+    rel="stylesheet">
+
+  <title>Jogo da Velha</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="index.js" defer></script>
+</head>
+
+<body>
+
+  <header>
+    <h1>Jogo da Velha</h1>
+    <div id="player">
+      <label for="player1" class="playerLabel">X</label>
+      <input type="text" id="player1" placeholder="Nome do Jogador 1" class="playerInput" maxlength="15"/>
+      <label for="player2" class="playerLabel">O</label>
+      <input type="text" id="player2" placeholder="Nome do Jogador 2" class="playerInput" maxlength="15"/>
     </div>
-    <div id="container">
+    <a href="#scoreBoard"><button id="start">INICIAR</button></a>
+  </header>
 
-      <section id="section1">
+  <main>
+    <section id="scoreBoard">
+      <div id="borderScreen">
         <h2 id="vezDe">VEZ DE: <span id="turnPlayer"></span></h2>
-        
         <div id="containerScore">
-          
           <h3 id="player1Score">X</h3>
           <div class="containerPlayer">
             <h3 id="scoreX" class="score">00</h3>
@@ -43,23 +43,24 @@
             <h3 id="scoreO" class="score">00</h3>
           </div>
           <h3 id="player2Score">O</h3>
-          
+
         </div>
         <button id="btnContinuar">CONTINUAR</button>
+      </div>
+    </section>
 
-      </section>
+    <section id="gameBoard">
+      <span class="cursor-pointer" data-region="0.0"></span>
+      <span class="cursor-pointer" data-region="0.1"></span>
+      <span class="cursor-pointer" data-region="0.2"></span>
+      <span class="cursor-pointer" data-region="1.0"></span>
+      <span class="cursor-pointer" data-region="1.1"></span>
+      <span class="cursor-pointer" data-region="1.2"></span>
+      <span class="cursor-pointer" data-region="2.0"></span>
+      <span class="cursor-pointer" data-region="2.1"></span>
+      <span class="cursor-pointer" data-region="2.2"></span>
+    </section>
+  </main>
+</body>
 
-      <section id="gameBoard">
-        <span class="cursor-pointer" data-region="0.0"></span>
-        <span class="cursor-pointer" data-region="0.1"></span>
-        <span class="cursor-pointer" data-region="0.2"></span>
-        <span class="cursor-pointer" data-region="1.0"></span>
-        <span class="cursor-pointer" data-region="1.1"></span>
-        <span class="cursor-pointer" data-region="1.2"></span>
-        <span class="cursor-pointer" data-region="2.0"></span>
-        <span class="cursor-pointer" data-region="2.1"></span>
-        <span class="cursor-pointer" data-region="2.2"></span>
-      </section>
-    </div>
-  </body>
 </html>
