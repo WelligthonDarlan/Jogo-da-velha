@@ -1,5 +1,8 @@
 // Variáveis globais úteis
 const boardRegions = document.querySelectorAll("#gameBoard span");
+const gameBoard = document.getElementById('gameBoard')
+const scoreBoard = document.getElementById('scoreBoard')
+const borderScreen = document.getElementById('borderScreen')
 
 const player1Score = document.getElementById('player1Score')
 const player2Score = document.getElementById('player2Score')
@@ -8,8 +11,10 @@ const inputPlayer2 = document.getElementById('player2')
 
 const scoreXElement = document.getElementById("scoreX");
 const scoreOElement = document.getElementById("scoreO");
+const vsScore = document.getElementById('vs')
+const btnContinuar = document.getElementById('btnContinuar')
 
-const header = document.getElementById('header')
+const header = document.querySelector('header')
 const main = document.querySelector('main')
 
 let turnPlayer = "";
@@ -22,15 +27,19 @@ function updateTitle() {
 
 function initializeGame() {
 
+  document.getElementById('rules').style.display = 'none'
+
+  header.style.display = "none"
+
   //Condicionais para adicionar nome caso o player não tenha colocado nada no input
   if(inputPlayer1.value.trim() === ""){
-    inputPlayer1.value = "X"
+    inputPlayer1.value = "Jogador X"
   }
   if(inputPlayer2.value.trim() === ""){
-    inputPlayer2.value = "O"
+    inputPlayer2.value = "Jogador O"
   }
 
-  main.style.opacity = "1"
+  main.style.display = "flex"
 
   // Inicializa as variáveis globais
   vBoard = [
@@ -83,10 +92,6 @@ function handleWin(regions) {
   const playerName = document.getElementById(turnPlayer).value;
   document.querySelector("h2").innerHTML = playerName.toUpperCase() + " VENCEU!";
 
-  const btnContinuar = document.getElementById('btnContinuar')
-  btnContinuar.style.opacity = "1"
-
-
   //Aumenta o valor no placar
   if (playerName === inputPlayer1.value) {
     let scoreXValue = parseInt(scoreXElement.textContent);
@@ -98,6 +103,11 @@ function handleWin(regions) {
     scoreOValue++;
     scoreOElement.textContent = scoreOValue.toString().padStart(2, '0');
   }
+
+  checkGameEnd()
+
+  // const btnContinuar = document.getElementById('btnContinuar')
+  btnContinuar.style.opacity = "1"
 }
 
 function handleBoardClick(ev) {
@@ -159,5 +169,84 @@ function handleBoardClick(ev) {
   })
 }
 
+function checkGameEnd() {
+
+  
+  const scoreXValue = parseInt(scoreXElement.textContent);
+  const scoreOValue = parseInt(scoreOElement.textContent);
+  
+  let playerWin = null;
+
+  if (scoreXValue >= 3) {
+    playerWin = `${inputPlayer1.value.toUpperCase()}`;
+  } else if (scoreOValue >= 3) {
+    playerWin = `${inputPlayer2.value.toUpperCase()}`;
+  }
+  if (playerWin) {
+    
+    alert(`Fim do jogo...`)
+    gameBoard.style.display = "none"; // Esconde o tabuleiro
+    player1Score.style.display = "none";
+    player2Score.style.display = "none";
+    inputPlayer1.style.display = "none";
+    inputPlayer2.style.display = "none";
+    scoreXElement.style.display = "none";
+    scoreOElement.style.display = "none";
+    btnContinuar.style.display = "none"
+    document.getElementById("vezDe").style.display = 'none'
+
+    scoreBoard.style.height = '80vh'
+    borderScreen.style.height = '100%'
+    borderScreen.classList.add('borderWinGameOver')
+    // borderScreen.style.backgroundImage = "url(./img/gameOver.png)"
+    // borderScreen.style.backgroundSize = 'cover'
+    // borderScreen.style.backgroundRepeat = 'no-repeat'
+
+    const winner = `${playerWin} VENCEU!`;
+    const vsScore = document.getElementById('vs'); 
+    
+    vsScore.innerText = ''
+    
+    let index = 0;
+
+    function escreverTexto() {
+      let index = 0;
+      function adicionarCaractere() {
+          if (index < winner.length) {
+              if (winner.charAt(index) === ' ') {
+                  vsScore.innerText += '\u00A0';
+              } else {
+                  vsScore.innerText += winner.charAt(index);
+              }
+              index++;
+              setTimeout(adicionarCaractere, 120);
+          } else {
+               // Quando a escrita estiver completa, reinicie o loop
+               vsScore.innerText = ''; // Limpa o conteúdo do elemento para começar de novo
+               index = 0;
+              setTimeout(adicionarCaractere, 120); // Espera 1 segundo antes de iniciar o próximo loop
+          }
+      }
+      adicionarCaractere();
+
+      const restart = document.getElementById("reloadButton")
+      restart.style.display = "flex"
+      main.style.display = "flex"
+      main.style.flexDirection = 'column'
+
+      document.getElementById('containerScore').style.height = '100%'
+  }
+  escreverTexto();
+    vsScore.style.padding = '0px 80px 300px'
+    vsScore.style.fontSize = '20vh'
+  }
+  
+}
+
+
 // Adiciona o evento no botão que inicia o jogo
 document.getElementById("start").addEventListener("click", initializeGame);
+
+document.getElementById("reloadButton").addEventListener("click", function() {
+  location.reload();
+});

@@ -23,13 +23,19 @@
   <header>
     <h1>Jogo da Velha</h1>
     <div id="player">
-      <label for="player1" class="playerLabel">X</label>
-      <input type="text" id="player1" placeholder="Nome do Jogador 1" class="playerInput" maxlength="15"/>
-      <label for="player2" class="playerLabel">O</label>
-      <input type="text" id="player2" placeholder="Nome do Jogador 2" class="playerInput" maxlength="15"/>
+      <input type="text" id="player1" placeholder="Nome do Jogador X" class="playerInput" maxlength="15"/>
+      <input type="text" id="player2" placeholder="Nome do Jogador O" class="playerInput" maxlength="15"/>
     </div>
     <a href="#scoreBoard"><button id="start">INICIAR</button></a>
   </header>
+  
+  <section id="rules">
+    <h3><span>R</span>egras:</h3>
+    <p>O primeiro a jogar é o X</p>
+    <p>Cada rodada vale 1 ponto</p>
+    <p>Quem ganhar inicia a proxima rodada</p>
+    <p>O jogo acaba quando alguem fazer 5 pontos</p>
+  </section>
 
   <main>
     <section id="scoreBoard">
@@ -60,6 +66,9 @@
       <span class="cursor-pointer" data-region="2.1"></span>
       <span class="cursor-pointer" data-region="2.2"></span>
     </section>
+
+    <button id="reloadButton">RECOMEÇAR</button>
+
   </main>
 </body>
 
